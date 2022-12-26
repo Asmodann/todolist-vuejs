@@ -1,3 +1,3 @@
 <template>
-    Home
+    Default projects todos
 </template>
