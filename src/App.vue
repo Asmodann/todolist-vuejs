@@ -3,6 +3,7 @@ import { defineComponent, ref } from 'vue';
 import Heading from './components/Header/Heading.vue';
 import Modal from './components/Modal.vue';
 import TodoForm from './components/TodoForm.vue';
+import TodoTask from './components/TodoTask.vue';
 
 const title = ref('');
 const bottomOfContainer = ref(false);
@@ -20,6 +21,10 @@ const addTask = (task) => {
 const toggleModal = () => {
     showModal.value = !showModal.value;
 }
+
+const deleteTodo = (elem) => {
+    tasks.value.splice(tasks.value.indexOf(elem), 1);
+};
 </script>
 
 <template>
@@ -40,8 +45,8 @@ const toggleModal = () => {
 
     <div class="container m-auto p-5 pt-28 overflow-y-auto max-h-screen" @scroll="handleScroll">
         <div class="flex flex-col w-full">
-            <div v-for="task in tasks" :key="task" class="flex w-full mb-2 p-8 bg-gray-400">
-                {{ task }}
+            <div v-for="task in tasks" :key="task">
+                <TodoTask :content="task" v-on:delete="deleteTodo(task)" />
             </div>
         </div>
     </div>

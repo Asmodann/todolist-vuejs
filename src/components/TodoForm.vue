@@ -11,6 +11,7 @@ const inputs = ref({
 const handleSubmit = () => {
     if (inputs.value.description.length == 0) return;
 
+
     emit('addTask', inputs.value.description);
     inputs.value.description = '';
 }
